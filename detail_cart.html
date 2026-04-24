@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block title %}Mon Panier{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">🛒 Votre panier</h2>
+
+    {% if cart.cartitem_set.all %}
+    <div class="row">
+        {% for item in cart.cartitem_set.all %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ item.product.image.url }}" class="card-img-top" alt="{{ item.product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.product.name }}</h5>
+                    <p class="card-text">
+                         Quantité : <strong>{{ item.quantity }}</strong><br>
+                         Prix unitaire : <span class="price">{{ item.product.price }}</span> €<br>
+                         Total : <span class="total"></span> €
+                     </p>
+                     
+                     <script>
+                         document.querySelectorAll('.card').forEach(card => {
+                             let qty = parseInt(card.querySelector('strong').innerText);
+                             let price = parseFloat(card.querySelector('.price').innerText);
+                             card.querySelector('.total').innerText = (qty * price).toFixed(2);
+                         });
+                     </script>
+
+                    <a href="{% url 'cartitem_delete' item.pk %}" class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash"></i> Supprimer
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Bouton vers la page shipping -->
+    <div class="text-center mt-4">
+        <a href="{% url 'create_order' %}" class="btn btn-success btn-lg">
+            <i class="fa fa-truck"></i> Passer à la livraison
+        </a>
+    </div>
+
+    {% else %}
+    <div class="alert alert-info">
+        Votre panier est vide.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
