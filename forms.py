@@ -1,7 +1,8 @@
 from django import forms
-from .models import OrderTable
+from django.contrib.auth.forms import UserCreationForm
+from .models import CustomUser
 
-class OrderForm(forms.ModelForm):
+class CustomUserCreationForm(UserCreationForm):
     class Meta:
-        model = OrderTable
-        fields = ['shipping_address']
+        model = CustomUser
+        fields = ['username', 'email', 'phone', 'address', 'password1', 'password2']

@@ -1,16 +1,8 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from .models import Product
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+from .forms import CustomUserCreationForm
 
-class ProductListView(ListView):
-    model = Product
-    template_name = 'produit/product_list.html'
-    context_object_name = 'products'
-class ProductDetailView(DetailView):
-    model = Product
-    template_name = 'produit/product_detail.html'
-    context_object_name = 'product'
-
-def home(request):
-    products = Product.objects.all()
-    return render(request, 'produit/home.html', {'products': products})
+class SignupView(CreateView):
+    form_class = CustomUserCreationForm
+    template_name = 'users/signup.html'
+    success_url = reverse_lazy('login')
