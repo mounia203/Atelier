@@ -1,0 +1,120 @@
+                      =======Compte rendu du mini‑projet Django – Site e‑commerce====
+
+1. Présentation générale
+=========================
+Le mini‑projet réalisé dans le cadre des ateliers est un site de commerce électronique nommé Electro‑planete.
+Ce site permet :
+
+d’afficher une liste de produits avec leurs détails,
+
+de gérer un panier (ajout, suppression, modification de quantité),
+
+de gérer les commandes,
+
+de gérer les comptes utilisateurs (inscription, connexion, déconnexion).
+
+Le projet utilise Django comme backend, le concept de templates pour le front‑end, et Bootstrap pour le style et le design.
+Toutes les étapes ont été réalisées en respectant les ateliers dédiés.
+
+2. Étapes de réalisation
+=============================
+a) Mise en place de l’environnement
+
+-Création d’un environnement virtuel :
+
+bash
+python -m venv venv
+venv\Scripts\activate
+
+Installation des dépendances :
+============================
+
+bash
+pip install django
+pip install Faker
+pip install django-crispy-forms crispy-bootstrap5
+
+b) Création du projet et des applications
+=========================================
+Création du projet principal :
+===========================
+
+bash
+django-admin startproject backend
+
+Création des applications :
+=========================
+
+bash
+python manage.py startapp produit
+python manage.py startapp users
+python manage.py startapp orders
+
+c) Gestion de la base de données
+===============================
+Génération des migrations :
+========================
+
+bash
+python manage.py makemigrations
+
+Application des migrations :
+==========================
+
+bash
+python manage.py migrate
+
+Vérification des migrations :
+=============================
+
+bash
+python manage.py showmigrations
+
+Création du superuser :
+========================
+
+bash
+python manage.py createsuperuser
+
+d) Données de test
+===================
+Génération de données fictives avec Faker :
+
+bash
+python manage.py fake_data
+
+e) Exécution du projet
+========================
+
+bash
+python manage.py runserver
+
+
+3. Résultats obtenus
+=====================
+
+Une page d’accueil avec un tableau Bootstrap listant les produits.
+
+Une page produits avec affichage en cartes et détails.
+
+Un panier permettant d’ajouter, supprimer et modifier les quantités.
+
+Une page commande (shipping) pour finaliser l’achat.
+
+Un système d’authentification .
+
+4. Conclusion
+=============
+Ce mini‑projet nous a permis de mettre en pratique les concepts fondamentaux de Django :
+
+Modèles (Models) pour la base de données,
+
+Vues (Views) génériques pour simplifier le code,
+
+Templates pour le rendu HTML,
+
+Bootstrap pour le design,
+
+Commandes Django pour gérer le projet et la base.
+
+Il illustre un workflow complet allant de la création de l’environnement jusqu’à la mise en place d’un site e‑commerce fonctionnel.
